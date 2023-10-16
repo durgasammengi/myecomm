@@ -1,0 +1,16 @@
+.navbar {
+    background-color: rebeccapurple;
+}
+
+.cart{
+    color: white;
+    background-color: white;
+
+}
+
+.position-absolute{
+    right:35px;
+}
+.btn .badge {
+    top: 8px;
+  }

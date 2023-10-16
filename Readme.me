@@ -1,0 +1,31 @@
+my_ecommerce_app/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models.py           # Define your database models here (e.g., User, Product)
+│   ├── routes.py           # Define your Flask routes and views
+│   ├── forms.py            # Define your WTForms for user input validation
+│   ├── templates/          # Store HTML templates
+│   │   ├── base.html       # Base template with common layout (header, footer, etc.)
+│   │   ├── registration.html
+│   │   ├── login.html
+│   │   ├── product_detail.html
+│   │   ├── ...             # Other templates for different views
+│   ├── static/             # Store static assets (CSS, JavaScript, images)
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── images/
+│   │   ├── ...
+│
+├── instance/                # Store configuration files (e.g., secrets)
+│   ├── config.py           # Store your application's secret key and database URI
+│
+├── tests/                   # Store unit tests and test data
+│
+├── venv/                    # Virtual environment (create this with venv or virtualenv)
+│
+├── requirements.txt         # List of project dependencies
+│
+├── run.py                   # Entry point for running your application
+│
+└── config.py                # Application configuration

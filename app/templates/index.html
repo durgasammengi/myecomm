@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - My E-Commerce Store{% endblock %}
+
+{% block content %}
+    <!-- Header section -->
+    <script>
+// write method to disable login and register button and enable logout button
+
+window.onload = function(){
+  verifyUser();
+}
+
+      function updateCartCount() {
+              // Make an AJAX GET request to the Flask route using fetch
+              fetch('/get_cart_count', {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+              })
+              .then(response => response.json())
+              .then(data => {
+                  // Update the cart count in your HTML element
+                  document.getElementById('cart-count').textContent = data.count;
+              })
+              .catch(error => {
+                  console.error(error);
+              });
+          }
+        function buyProduct(id, name, price, image){
+          sarr = id.split(',')
+            $('#showModal').modal('show');
+            $('.text-primary #modal_price').html(sarr[1]);
+            $('#modal_image').html("<img src="+sarr[3]+" title='' class='img-fluid'/>")
+        }
+
+        function addToCart(id){
+        fetch('/add_to_cart/'+id,{method: "POST"})
+        .then(response => {
+          if(response.redirected) {
+            window.location.href=response.url;
+          }
+          return response.text();
+        })
+        .then(data => {
+          console.log(JSON.parse(data).cart_count)
+          document.getElementById("cart_count").innerHTML=JSON.parse(data).cart_count;
+        });
+            alert(name+" added to cart")
+        }
+
+        function showProduct(id, name, price){
+            $('.text-primary #modal_price').val(price);
+            $('#showModal').modal('show');
+            alert(products)
+        }
+        function test(products){
+            alert(JSON.stringify(products))
+        }
+    </script>
+
+    <section class="section">
+        <div class="container">
+        <h1>Welcome to My E-Commerce Store..</h1>
+        <p>Discover amazing products at great prices.</p>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="../static/images/carousels/cart.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="../static/images/carousels/prod1.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="../static/images/carousels/cart.jpg" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+    </section>
+
+    <!-- Featured Products section -->
+    <!-- <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-list">
+            {% for product in featured_products %}
+            <div class="product">
+                <img src="{{ url_for('static', filename='images/' + product.image_url) }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <span class="price">$ {{ product.price }}</span>
+                <a href="/product/{{ product.id }}" class="btn">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section> -->
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center section-heading">
+                <div class="col-lg-6 mt-md-5 text-center">
+                </div>
+            </div>
+            {{cart_count}}
+            <div class="row g-3 g-lg-4">
+                {% for product in products %}
+                 <!-- Product Box -->
+                 <div class="col-6 col-lg-3">
+                    <div class="product-card-10">
+                        <div class="product-card-image">    
+                            <div class="product-media"><a href="javascript:showProduct()"><img class="img-fluid" src="{{product.image_path}}" title="" alt=""></a></div>
+                        </div>
+                        <div class="product-card-info">
+                            <div class="rating-star text"><i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star"></i></div>
+                            <h6 class="product-title"><a href="javascript:showProduct('{{ product.id}},{{product.name}},{{ product.price}})">{{ product.name }}"</a></h6>
+                            <div class="product-price"><span class="text-primary">{{ product.price }}<small> Rs.</small></span></div>
+                            <div class="product-buy-addcard"><button onclick="buyProduct('{{ product.id}},{{product.name}},{{ product.price}}, {{product.image_path}}')">Buy</button><button onclick="addToCart('{{ product.id }}')" >Add to Cart</button></div>
+                            <div class="product-action"><a href="#" class="btn"><i class="fa fa-heart"></i> </a><a href="#" class="btn"><i class="fa fa-repeat"></i> </a><a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn"><i class="fa fa-eye"></i> </a>
+                                <a
+                                    href="#" class="btn"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Product Box -->
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+    <div class="modal fade" id="showModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="product-card-info">
+                        <div class="product-card-image">    
+                            <div class="product-media" id="modal_image"></div>
+                        </div>
+                        <div class="rating-star text"><i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star"></i></div>
+                        <h6 class="product-title"><a href="#"></a></h6>
+                        <div class="product-price"><span class="text-primary"><small id="modal_price"> </small></span></div>
+                        <div class="product-buy-addcard"><button onclick="buyProduct()">Buy</button><button onclick="addToCart('')" >Add to Cart</button></div>
+                        <div class="product-action"><a href="#" class="btn"><i class="fa fa-heart"></i> </a><a href="#" class="btn"><i class="fa fa-repeat"></i> </a><a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn"><i class="fa fa-eye"></i> </a>
+                            <a
+                                href="#" class="btn"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    {% endblock %}

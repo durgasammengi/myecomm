@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - My E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<script>
+    $(document).ready(function() {
+      $('#myModal').modal('show');
+    });
+const modalBody = document.querySelector('#myModal');
+const centerModalFields = () => {
+  modalBody.querySelectorAll('input, select, textarea').forEach(field => {
+    field.style.margin = '0 auto';
+    });
+  };
+  function forgotPassModal(){
+    $('#myModal').modal('hide');
+    $('#forgotPassModal').modal('show');
+  }
+</script>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login</h5>
+          <button type="button" class="close" onclick="location.href='/';" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <section class="section">
+            <div class="container">
+            <h2>Login</h2>
+            <form method="POST" action="/login">
+                {{ form.hidden_tag() }}
+                {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                    {% if messages %}
+                      <ul>
+                      {% for message in messages %}
+                        <li>{{ message }}</li>
+                      {% endfor %}
+                      </ul>
+                    {% endif %}
+                    {% endwith %}
+                <div>
+                    {{ form.username.label }}
+                    {{ form.username(size=20) }}
+                </div>
+                <div>
+                    {{ form.password.label }}
+                    {{ form.password(size=20) }}
+                </div>
+                <div class="mb-md-1">
+                    {{ form.submit() }}
+                </div>
+            </form>
+            <div class="d-flex">
+              <div class="mr-auto  p-2"><a href="javascript:forgotPassModal()">Forgot password</a></div>
+              <div class="p-2"> <a href="">Register</a></div>
+           </div>
+            </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="forgotPassModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ForgotPassword</h5>
+          <button type="button" class="close" onclick="location.href='/';" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <section class="section">
+            <div class="container">
+            <p>Please enter registered email id.</p>
+            <form method="GET" action="/verifyEmail">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+              <br>
+              <input type="submit" value="Verify Email">
+            </form>
+            <div class="d-flex">
+              <div class="p-2"> No account? <a href="/register">Register</a></div>
+           </div>
+            </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+    {% endblock %}

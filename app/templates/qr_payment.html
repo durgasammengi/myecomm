@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - My E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<div class="row justify-content-center"><br/>
+    <div class="d-flex flex-column">
+        <div class="p-2"><h1>Payment QR Code</h1></div>
+        <div class="p-2"><div id="qrcode"></div></div>
+        <div class="p-2"><h1>Scan above code for proceed payment</h1></div>
+      </div>
+    </div>
+
+    <script>
+        verifyUser();
+        // Payment information (replace with your payment details)
+        var paymentInfo = {
+            amount: 100.00,
+            currency: "USD",
+            recipient: "recipient@example.com",
+            // Add other payment details here
+        };
+
+        // Generate the QR code
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: JSON.stringify(paymentInfo), // Convert paymentInfo to a JSON string
+            width: 200, // Adjust the size of the QR code as needed
+            height: 200,
+            
+        });
+    </script>
+ </div>
+</section>
+
+{% endblock %}
+

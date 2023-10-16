@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin- My E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<script>
+    $(document).ready(function(){
+    $('#myModal').modal('show');
+   });
+</script>
+    <!-- Header section -->
+    <section class="section">
+        <div class="container">
+            <h1>Welcome Administrator..</h1>
+            <button onclick="openModal()">Add New Product</button>
+            <h2>All Products</h2>
+            <div class="product-list">
+                {% for product in products %}
+                    <div class="product">
+                        <img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Product Type: {{ product.product_type }}</p>
+                        <span class="price">$ {{ product.price }}</span>
+                        <!-- Add more product information and buttons as needed -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Login</h5>
+              <button type="button" class="close" onclick="location.href='/';" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <section class="section">
+                <div class="container">
+               
+                    <h2>Add a New Product</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div>
+                            {{ form.name.label }}
+                            {{ form.name(size=30) }}
+                        </div>
+                        <div>
+                            {{ form.description.label }}
+                            {{ form.description(size=30) }}
+                        </div>
+                        <div>
+                            {{ form.price.label }}
+                            {{ form.price(size=10) }}
+                        </div>
+                        <div>
+                            {{ form.product_type.label }}
+                            {{ form.product_type() }}
+                        </div>
+                        <div>
+                            {{ form.image.label }}
+                            {{ form.image() }}
+                        </div>
+                        <div>
+                            {{ form.submit() }}
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+
+    

@@ -1,0 +1,226 @@
+@import "registration.css";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto', sans-serif;
+}
+
+.navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #d82b2b;
+    z-index: 9;
+    align-items: center;
+}
+
+.nav{
+    padding: 10px 10vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.brand-logo{
+    height: 60px;
+}
+
+.nav-items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search{
+    width: 500px;
+    display: flex;
+}
+
+.search-box{
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #d1d1d1;
+    text-transform: capitalize;
+    background: none;
+    color: #a9a9a9;
+    outline: none;
+}
+
+.search-btn{
+    width: 20%;
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #383838;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.search-logo, .search-logo-img{
+    display: none;
+}
+
+.search-box::placeholder{
+    color: #a9a9a9;
+}
+
+.nav-items a{
+    margin-left: 20px;
+}
+
+.nav-items a img{
+    width: 30px;
+}
+
+footer{
+    width: 100%;
+    padding: 40px 10vw;
+    padding-bottom: 80px;
+    background: #383838;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+    /* For mobile devices */
+@media (max-width: 576px) {
+    /* Make the navigation bar stackable */
+    nav ul {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Reduce the font size of the main content */
+    .content {
+      font-size: 16px;
+    }
+    /* Make the navigation bar stackable */
+  .navbar {
+    display: flex;
+    /* flex-direction: column; */
+  } 
+  
+  .nav{
+    padding: 10px 6vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+  /* Reduce the size of the brand logo */
+  .brand-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .search{
+    width: 300px;
+    display: flex;
+}
+
+  /* Reduce the size of the search box */
+  .search-box {
+    width: 75%;
+  }
+
+  /* Move the search button to a new line */
+  .search-btn {
+    display: none;
+    margin-top: 0px;
+  }
+  
+  /* Move the user and cart icons to a new line */
+  .nav-items {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+  }
+  footer{
+    width: 100%;
+    padding: 40px 10vw;
+    padding-bottom: 80px;
+    background: #383838;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+  }
+  
+  /* For tablet devices */
+  @media (min-width: 576px) and (max-width: 768px) {
+    /* Make the navigation bar wider */
+    nav ul {
+      width: 100%;
+    }
+  
+    /* Increase the font size of the main content */
+    .content {
+      font-size: 18px;
+    }
+
+    .navbar {
+        width: 100%;
+      }
+    
+      /* Increase the size of the brand logo */
+      .brand-logo{
+        height: 50px;
+        width: 50px;
+    }
+    
+      /* Increase the size of the search box */
+      .search-box {
+        width: 200px;
+      }
+    
+      /* Move the search button to the same line as the brand logo */
+      .search-btn {
+        margin-top: 0;
+      }
+  }
+  
+  /* For desktop devices */
+  @media (min-width: 768px) {
+    /* Make the navigation bar even wider */
+    nav ul {
+      width: 100%;
+    }
+  
+    /* Increase the font size of the main content even more */
+    .content {
+      font-size: 20px;
+    }
+      /* Make the navigation bar even wider */
+  .navbar {
+    width: 100%;
+  }
+
+  /* Increase the size of the brand logo even more */
+  .brand-logo{
+    height: 50px;
+    width: 50px;
+}
+
+  /* Increase the size of the search box even more */
+  .search-box {
+    width: 700px;
+  }
+
+  /* Move the search button to the same line as the brand logo */
+  .search-btn {
+    margin-top: 0;
+    }
+  }
+  
+  .nav-item{
+    color: white;
+    background-color: white;
+  }

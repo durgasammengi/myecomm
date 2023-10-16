@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin- My E-Commerce Store{% endblock %}
+
+{% block content %}
+<script>
+   function openModal(){
+    $('#myModal').modal('show');
+   }
+</script>
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center section-heading">
+                <div class="col-lg-6 mb-md-5 text-center">
+
+                    <h1>Welcome Administrator..</h1>
+                    <button><a href="/add_product"> Add New Product</a></button>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center section-heading">
+                <div class="col-lg-6 text-center">
+                </div>
+            </div>
+            
+            <div class="row g-3 g-lg-4">
+                {% for product in products %}
+                <!-- Product Box -->
+                <!-- <div class="col-6 col-lg-3">
+                    <div class="product-card-10">
+                        <div class="product-card-image"> 
+                            <div class="product-media"><a href="#">
+                                <img class="img-fluid" src="/home/prasad/Documents/ECommarce/app/static/images/products/1.png" alt="{{ product.name }}" title="">
+                                {% if product.image_path %}
+                                    <img src="{{ '../static/images/products/'+'1.png' }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <p>Error: Image not found</p>
+                                {% endif %}
+                            </a></div>
+                        </div>
+                        <div class="product-card-info">
+                            <div class="rating-star text"><i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star"></i></div>
+                            <h6 class="product-title"><a href="#">{{ product.name }}</a></h6>
+                            <h3>{{ product.name }}</h3>
+                            <div class="product-price"><span class="text-primary">{{ product.price }}<small> Rs.</small></span></div>
+                            <div class="product-buy-addcard"><button>Buy</button><button>Add Cart</button></div>
+                            <div class="product-action"><a href="#" class="btn"><i class="fa fa-heart"></i> </a><a href="#" class="btn"><i class="fa fa-repeat"></i> </a><a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn"><i class="fa fa-eye"></i> </a>
+                                <a
+                                    href="#" class="btn"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                 <!-- Product Box -->
+                 <div class="col-6 col-lg-3">
+                    <div class="product-card-10">
+                        <div class="product-card-image">    
+                            <div class="product-media"><a href="#"><img class="img-fluid" src="{{product.image_path}}" title="" alt=""></a></div>
+                        </div>
+                        <div class="product-card-info">
+                            <div class="rating-star text"><i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star-fill active"></i> <i class="bi bi-star"></i></div>
+                            <h6 class="product-title"><a href="#">{{ product.name }}"</a></h6>
+                            <div class="product-price"><span class="text-primary">{{ product.price }}<small> Rs.</small></span></div>
+                            <div class="product-buy-addcard"><button onclick="window.location.href='/remove_product/{{product.id}}'">Update</button><button>Remove</button></div>
+                            <div class="product-action"><a href="#" class="btn"><i class="fa fa-heart"></i> </a><a href="#" class="btn"><i class="fa fa-repeat"></i> </a><a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn"><i class="fa fa-eye"></i> </a>
+                                <a
+                                    href="#" class="btn"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Product Box -->
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+    {% endblock %}
+
+    
